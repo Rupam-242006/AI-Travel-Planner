@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wandr — AI Travel Planner</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="hero-magazine">
+    <nav class="nav-editorial">
+      <span class="logo-brand">Wandr</span>
+      <div class="nav-links-right">
+        <span class="nav-meta">// EDITION 2026</span>
+        <a href="#planner" class="nav-cta-link">Launch Planner ↓</a>
+      </div>
+    </nav>
+
+    <div class="hero-grid">
+      <div class="hero-text-side">
+        <div class="editorial-badge">AI-Engineered Itineraries</div>
+        <h1 class="hero-title-large">
+          Stop planning.<br />
+          Start <em>wandering.</em>
+        </h1>
+        <p class="hero-lead-text">
+          Drop a single sentence, a vague mood, or strict constraints. We synthesize raw data into human-centric, curated journeys instantly.
+        </p>
+        <div class="hero-action-row">
+          <a href="#planner" class="btn-magazine-primary">Begin Designing —</a>
+        </div>
+      </div>
+
+      <div class="hero-visual-side">
+        <div class="window-frame">
+          <div class="window-image-placeholder">
+            <div class="window-slideshow">
+              <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" alt="Tokyo Streets" class="slide-img" />
+              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80" alt="Bali Beach" class="slide-img" />
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Swiss Alps" class="slide-img" />
+              <img src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80" alt="Hawaii Coast" class="slide-img" />
+            </div>
+          </div>
+          <div class="floating-caption">
+            <span class="caption-number">01 //</span>
+            <p class="caption-text">Tailored routes bypassing traditional tourist traps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="planner" class="planner">
+    <div class="planner-inner">
+
+      <section class="step" id="step-description">
+        <div class="step-label">Tell us about your trip</div>
+        <h2 class="step-heading">Describe your dream vacation</h2>
+        <p class="step-hint">Write anything — destination, vibe, must-dos, or just a feeling. Or skip this and use the options below.</p>
+        <div class="textarea-wrap">
+          <textarea id="trip-description" placeholder="e.g. I want a relaxing week in Southeast Asia with beach days, local street food, and maybe a temple visit or two..." rows="4"></textarea>
+          <span class="char-count" id="char-count">0 / 500</span>
+        </div>
+        <button type="button" class="skip-btn" id="skip-btn">Skip — I'll use options below ↓</button>
+      </section>
+
+      <div class="divider"><span>— and / or —</span></div>
+
+      <section class="step" id="step-destination">
+        <div class="step-label">Destination</div>
+        <h2 class="step-heading">Where to?</h2>
+        <p class="step-hint">Pick a specific place, a region, or just describe a vibe.</p>
+        
+        <div class="field-group">
+          <input 
+              type="text" 
+              id="destination-input" 
+              placeholder="e.g., Japan, Europe, or 'Anywhere with beaches'" 
+              list="destination-suggestions"
+              autocomplete="off"
+          />
+          
+          <datalist id="destination-suggestions">
+              <option value="Bali, Indonesia"></option>
+              <option value="Thailand"></option>
+              <option value="Tokyo, Japan"></option>
+              <option value="Maldives"></option>
+              <option value="Kerala, India"></option>
+              <option value="Rajasthan, India"></option>
+              <option value="Swiss Alps"></option>
+              <option value="Paris, France"></option>
+              <option value="Hawaii, USA"></option>
+          </datalist>
+        </div>
+      </section>
+
+      <section class="step" id="step-dates">
+        <div class="step-label">When are you going?</div>
+        <h2 class="step-heading">Pick your travel date & duration</h2>
+        <div class="dates-row">
+          <div class="field-group">
+            <label for="travel-date">Departure date</label>
+            <input type="date" id="travel-date" />
+          </div>
+          <div class="field-group">
+            <label for="days-val">How many days?</label>
+            <div class="stepper">
+              <button type="button" class="stepper-btn" id="days-minus">−</button>
+              <span class="stepper-val" id="days-val">7</span>
+              <button type="button" class="stepper-btn" id="days-plus">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" id="step-budget">
+        <div class="step-label">Budget</div>
+        <h2 class="step-heading">What's your budget?</h2>
+        <div class="pill-group" id="budget-group">
+          <button type="button" class="pill" data-val="low">💸 Budget</button>
+          <button type="button" class="pill" data-val="medium">✈️ Mid-range</button>
+          <button type="button" class="pill" data-val="high">💎 Luxury</button>
+          <button type="button" class="pill" data-val="custom">Custom</button>
+        </div>
+        <div class="custom-budget-wrap hidden" id="custom-budget-wrap">
+          <label for="custom-budget">Enter your total budget (USD)</label>
+          <input type="number" id="custom-budget" placeholder="e.g. 2500" min="0" />
+        </div>
+      </section>
+
+      <section class="step" id="step-group">
+        <div class="step-label">Travel group</div>
+        <h2 class="step-heading">Who's travelling?</h2>
+        <div class="pill-group" id="group-group">
+          <button type="button" class="pill" data-val="solo">🧍 Solo</button>
+          <button type="button" class="pill" data-val="couple">💑 Couple</button>
+          <button type="button" class="pill" data-val="family">👨‍👩‍👧 Family</button>
+          <button type="button" class="pill" data-val="friends">👫 Friends</button>
+        </div>
+      </section>
+
+      <section class="step" id="step-activities">
+        <div class="step-label">Activities</div>
+        <h2 class="step-heading">What do you love to do?</h2>
+        <p class="step-hint">Select as many as you like.</p>
+        <div class="pill-group multi" id="activity-group"></div>
+
+        <div class="conditional-block hidden" id="sea-block">
+          <p class="cond-label">🌊 You love the sea — pick your beach activities:</p>
+          <div class="pill-group multi" id="sea-group"></div>
+        </div>
+        <div class="conditional-block hidden" id="mountain-block">
+          <p class="cond-label">🏔️ You're a mountain person — tell us more:</p>
+          <div class="pill-group multi" id="mountain-group"></div>
+        </div>
+      </section>
+
+      <section class="step" id="step-food">
+        <div class="step-label">Food preferences</div>
+        <h2 class="step-heading">Any dietary preferences?</h2>
+        <div class="pill-group multi" id="food-group">
+          <button type="button" class="pill" data-val="veg">🥗 Pure Veg</button>
+          <button type="button" class="pill" data-val="nonveg">🍗 Non-Veg</button>
+          <button type="button" class="pill" data-val="vegan">🌱 Vegan</button>
+          <button type="button" class="pill" data-val="seafood">🦐 Seafood lover</button>
+          <button type="button" class="pill" data-val="local">🍜 Local cuisine</button>
+          <button type="button" class="pill" data-val="any">😋 No preference</button>
+        </div>
+      </section>
+
+      <div class="generate-wrap">
+        <button class="generate-btn" id="generate-btn">
+          <span class="gen-icon">✦</span>
+          Generate My Trip Plan
+        </button>
+        <p class="gen-note">Wandr will combine everything you've told us into a personalised itinerary.</p>
+      </div>
+
+    </div>
+  </main>
+  
+  <!-- RESULT SECTION -->
+  <section id="result-section" class="result-section hidden">
+    <div class="result-inner">
+      <div class="result-header">
+        <h2 class="result-title">Your Trip Plan</h2>
+        <button class="replan-btn" id="replan-btn">← Start over</button>
+      </div>
+      <div id="result-loading" class="result-loading hidden">
+        <div class="spinner"></div>
+        <p>Crafting your perfect itinerary…</p>
+      </div>
+      <div id="result-content" class="result-content"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>Wandr · AI Travel Planner · Powered by Groq LLaMA</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="ui.js"></script>
+  <script src="config.js"></script>
+  <script src="planner.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
